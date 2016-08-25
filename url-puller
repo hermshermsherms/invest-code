@@ -3,7 +3,7 @@ import java.io.*;
 
 public class PullFromURL {
 	public static void main(String[] args) throws Exception {
-	URL oracle  = new URL("http://finance.yahoo.com/d/quotes.csv?s=AAPL+HD+F&f=nl1");
+	URL oracle  = new URL("http://finance.yahoo.com/d/quotes.csv?s=AAPL+HD+F&f=nl1"); //hardcoded for now
 	BufferedReader in = new BufferedReader(
 			new InputStreamReader(oracle.openStream()));
 	String inputLine;
