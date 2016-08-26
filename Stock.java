@@ -11,11 +11,30 @@ public class Stock {
 /**
  * Constructs a Stock
  */
-public Stock() {
+public Stock(String fileName) {
 
-   name = "???";
+   name = fileName;
    
-   stock[0] = GraphData columnOneTwo = new GraphData;
-   stock[1] = PeakFinder columnThree = new PeakFinder;
-   stock[2] = ValleyFinder columnFour = new ValleyFinder;
+   GraphData columnOneTwo = new GraphData(fileName);
+   PeakFinder columnThree = new PeakFinder(fileName);
+   StandardDeviation columnFour = new StandardDeviation(fileName);
+   
+   stock[0] = columnOneTwo;
+   stock[1] = columnThree;
+   stock[2] = columnFour;
+   
+}
+
+public String toString() {
+
+String toString = "";
+
+   for (int r = 0; r < 2; r++) { 
+   
+      toString = toString + stock[r].toString();
+      
+      }
+   
+return toString;
+}
 }
