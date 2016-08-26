@@ -1,162 +1,23 @@
-//An array that stores the original data
-
 import java.util.Scanner;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-public class GraphData extends DataSet {
+public class FileGenerator {
 
-   protected double minVal;
-   protected double maxVal;
-   protected int numRows;
-   Scanner inFile;
-   
-public GraphData() {
+   //public FileGenerator(String outputFile, GraphData originalData, 
+   //PeakFinder peaks) throws IOException {
+   public FileGenerator(String outputFile, Stock stock) throws IOException {
 
-}
-
-public GraphData(String fileName) {
-   
-   type = "Graph Data";
-   //public ArrayFromFile(String fileName) throws IOException {
-      
-   SetUpFile(fileName);
-   
-     //Find the number of rows: 
-         while (inFile.hasNext()) {
-      
-            inFile.nextLine();
+   PrintWriter outFile = new PrintWriter(new FileWriter(outputFile));
+         //outFile.println(originalData.type);
+         //outFile.print(originalData + "\n");
+         //outFile.println(peaks.type);
+         //outFile.print(peaks + "\n");
+         outFile.print(stock);
          
-            numRows++; }
-            
-      //Make an array of this size:
-      array = new double[numRows][2];
-      
-      //Put the data from the file into a 2D array:
-      SetUpFile(fileName);
-      
-         for (int r = 0; r < numRows; r++) {
-         
-            for (int c = 0; c < 2; c++) {
-            
-               array[r][c] = inFile.nextDouble();
-            }
-         }
-         
-   //Find the minimum value:
-   //minVal = FindMinValue();
-   FindMinValue();
-   
-   
-   //Find the maximum value:
-   //maxVal = FindMaxValue();
-   FindMaxValue();
-   
-}
-
-public void SetUpFile(String fileName) {
-   
-   inFile = null;
-      
-      while (inFile == null) {
-      
-      try {
-         //inFile = new Scanner(new FileReader(fileName + ".txt")); //GraphData.txt
-         inFile = new Scanner(new FileReader(fileName + ".csv")); //GraphData.txt
-
-      }
-      
-      catch (FileNotFoundException e) {
-         System.err.println(e.getMessage());
-         System.err.print("File not found.");
-         System.err.print("sorry, try again...");
-         inFile = null;
-         }
-      }  
-}
-
-public String toString() {
-
-String toString = "";
-
-   for (int r = 0; r < numRows; r++) {
-      
-      for (int c = 0; c < 2; c++) {
-         
-         toString = toString + array[r][c] + "   ";
-      }
-      
-         toString = toString + "\n";
-   }
-   
-   return toString;
-}  
- 
-public double GetValue(int r, int c) {
-   
-   return array[r][c];
-}
-
-public int GetNumRows() {
-
-   return numRows;
-}
-
-public void FindMinValue() {
-   
-      minVal = array[0][1];
-      
-         for (int r = 0; r < numRows; r++) {
-   
-            if (array[r][1] < minVal)
-               minVal = array[r][1];
-         }
-      //return minVal;
-}
- 
-public void FindMaxValue() {
-   
-   maxVal = array[0][1];
-      
-      for (int r = 0; r < numRows; r++) {
-   
-         if (array[r][1] > maxVal)
-               maxVal = array[r][1];
-      }
-   //return maxVal;       
-}
+         outFile.close();
 
 }
-
-
-
-/* ready to process file
-      System.out.println(file.nextLine());
-
-      System.out.println("Number we got from method: " + 
-         getNumber(kb));
-      System.out.println("Continuing in main...");
-      }
-   
-   public static int getNumber(Scanner kb) {
-      int number = 0;
-      try {
-         System.out.print("Enter an even integer: ");
-         number = kb.nextInt();
-         if(number % 2 != 0)
-            throw new NotEvenException(number);
-      }
-      catch (InputMismatchException e){
-         System.err.println(e.getMessage());
-      }
-      catch (NotEvenException e) {
-         System.err.println(e.getMessage());
-         e.printStackTrace();
-         number = 22;
-      }
-      return number;
-   }
-} */
+}
