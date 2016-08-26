@@ -1,9 +1,16 @@
 import java.net.*;
+import java.util.Scanner;
 import java.io.*;
 
 public class PullFromURL {
 	public static void main(String[] args) throws Exception {
-	URL oracle  = new URL("http://finance.yahoo.com/d/quotes.csv?s=AAPL+HD+F&f=nl1"); //hardcoded for now
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("What stock do you want to add to the database?");
+		String input = scanner.nextLine();
+		String baseUrl = "http://finance.yahoo.com/d/quotes.csv?s=";
+		String endUrl = "&f=nl1";
+		String urlFull = baseUrl+input+endUrl;
+	URL oracle  = new URL(urlFull);
 	BufferedReader in = new BufferedReader(
 			new InputStreamReader(oracle.openStream()));
 	String inputLine;
